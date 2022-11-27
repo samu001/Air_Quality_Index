@@ -6,6 +6,7 @@ from streamlit_folium import folium_static
 # General API data
 API_KEY = "1c87e736-9460-46c3-87f7-bb057635dd8f"
 
+
 # Functions
 
 # Function to fetch data and return an array of the query word
@@ -17,6 +18,7 @@ def fetch_data(url, query):
     for item in res['data']:
         arr.append(item[query])
     return arr
+
 
 # Function to interpret aqi
 def find_aqi_rank(aqi):
@@ -57,7 +59,8 @@ def map_creator(latitude, longitude):
 
 
 # SideBar
-selectedTab = st.sidebar.selectbox("Select a Tab", ["Country/State/City", "Nearest City", "Latitude/Longitude"], index=0)
+selectedTab = st.sidebar.selectbox("Select a Tab", ["Country/State/City", "Nearest City", "Latitude/Longitude"],
+                                   index=0)
 
 st.header("⛅ Weather around the World")
 
@@ -91,7 +94,7 @@ if selectedTab == "Country/State/City":
                     res = requests.get(url).json()
                     display_weather_data(res)
     except:
-            st.warning("Data not available for State/City or too many API calls in 1 minute")
+        st.warning("Data not available for State/City or too many API calls in 1 minute")
 
 
 elif selectedTab == 'Nearest City':
